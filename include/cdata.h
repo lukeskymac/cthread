@@ -30,9 +30,17 @@ typedef struct s_TCB {
 	ucontext_t 	context;	// contexto de execução da thread (SP, PC, GPRs e recursos) 
 	
 	/* Se necessário, pode-se acresecentar campos nessa estrutura A PARTIR DAQUI! */
+		ucontext_t on_thread_end;
 	
 	
 } TCB_t; 
+typedef struct s_int2{ 
+	int		waiting; 		// thread that is blocked waiting for another thread
+	int		join;		// thread that will unblock the other thread 
+} int2;
+void Initialize();
+static void schedule(void);
+static void threadUnblock(void);
 
 
 #endif

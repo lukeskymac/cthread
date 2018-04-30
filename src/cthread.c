@@ -28,20 +28,20 @@ ucontext_t context_threadended;
 void printQueuejoin(PFILA2 fila)
 {
 	FirstFila2(fila);
-	int* t = (int*) GetAtIteratorFila2(fila);
+	int2* t = (int2*) GetAtIteratorFila2(fila);
 	//printf("TID Queuejoin:\t");
 	while(t != NULL)
 	{
 		//printf("rule %d->%d ", t->waiting, t->join);
 		NextFila2(fila);
-		t = (int*) GetAtIteratorFila2(fila);
+		t = (int2*) GetAtIteratorFila2(fila);
 	}
 	//printf("\n");
 }
 int findJoin(int id)
 {
 
-	int *t;
+	int2 *t;
 	FirstFila2(&filaJoin);
 
 	//printf("was joining for thread %d\n",id);
@@ -49,7 +49,7 @@ int findJoin(int id)
 	{
 
 		////printf("wololo\n");
-		t = (int*) GetAtIteratorFila2(&filaJoin);
+		t = (int2*) GetAtIteratorFila2(&filaJoin);
 		if(t == NULL)
 		{
 
@@ -75,8 +75,8 @@ int findJoin(int id)
 }
 void insertInJoin(int waiting, int join)
 {
-	////printf("Inserindo thread id %d na fila de aptos.\n", int.waiting);
-	int* new = (int*) malloc(sizeof(int));
+	////printf("Inserindo thread id %d na fila de aptos.\n", int2.waiting);
+	int2* new = (int2*) malloc(sizeof(int2));
 	new->waiting = waiting;
 	new->join = join;
 	//FirstFila2(&filaJoin);
@@ -164,9 +164,6 @@ TCB_t* removeFromBloqueados(tid)
 	return fila;
 }
 
-//Forward declaration??
-static void threadUnblock();
-
 bool initialized = false;
 void Initialize()
 {
@@ -212,7 +209,7 @@ int insertInBloqueados(TCB_t *t)
 
 int cidentify (char *name, int size)
 {
-	char *nome_grupo = "Jessica Lorencetti - 228342, Lucas Pizzo - 220484\n";
+	char *nome_grupo = "Jessica Lorencetti - 228342, Marcelo Kupac - 194722, Lucas Pizzo - 220484\n";
 	strncpy(name, nome_grupo, size);
     return 0;
 }

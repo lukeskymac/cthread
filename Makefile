@@ -9,7 +9,7 @@ all: libcthread
 
 libcthread: cthread.o
 	mv *.o $(BIN_DIR)
-	ar rcs $(LIB_DIR)/libcthread.a $(BIN_DIR)/escalonador.o $(BIN_DIR)/cthread.o
+	ar rcs $(LIB_DIR)/libcthread.a $(BIN_DIR)/cthread.o
 
 cthread.o:
 	$(CC) $(CFLAGS) -I$(INC_DIR) $(SRC_DIR)/cthread.c $(BIN_DIR)/support.o
