@@ -164,7 +164,8 @@ TCB_t* removeFromBloqueados(tid)
 	return fila;
 }
 
-
+//Forward declaration??
+static void threadUnblock();
 
 bool initialized = false;
 void Initialize()
