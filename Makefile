@@ -1,33 +1,20 @@
-#
-# Makefile de EXEMPLO
-#
-# OBRIGATÓRIO ter uma regra "all" para geração da biblioteca e de uma
-# regra "clean" para remover todos os objetos gerados.
-#
-# É NECESSARIO ADAPTAR ESSE ARQUIVO de makefile para suas necessidades.
-#  1. Cuidado com a regra "clean" para não apagar o "support.o"
-#
-# OBSERVAR que as variáveis de ambiente consideram que o Makefile está no diretótio "cthread"
-# 
-
 CC=gcc
 LIB_DIR=./lib
 INC_DIR=./include
 BIN_DIR=./bin
 SRC_DIR=./src
+CFLAGS=-c
 
-all: regra1 regra2 regran
+all: libcthread
 
-regra1: #dependências para a regra1
-	$(CC) -o $(BIN_DIR)regra1 $(SRC_DIR)regra1.c -Wall
+libcthread: cthread.o
+	mv *.o $(BIN_DIR)
+	ar rcs $(LIB_DIR)/libcthread.a $(BIN_DIR)/escalonador.o $(BIN_DIR)/cthread.o
 
-regra2: #dependências para a regra2
-	$(CC) -o $(BIN_DIR)regra2 $(SRC_DIR)regra2.c -Wall
-
-regran: #dependências para a regran
-	$(CC) -o $(BIN_DIR)regran $(SRC_DIR)regran.c -Wall
+cthread.o:
+	$(CC) $(CFLAGS) -I$(INC_DIR) $(SRC_DIR)/cthread.c $(BIN_DIR)/support.o
 
 clean:
+	mv $(BIN_DIR)/support.o .
 	rm -rf $(LIB_DIR)/*.a $(BIN_DIR)/*.o $(SRC_DIR)/*~ $(INC_DIR)/*~ *~
-
-
+	mv support.o $(BIN_DIR)
