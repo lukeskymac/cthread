@@ -5,14 +5,14 @@ BIN_DIR=./bin
 SRC_DIR=./src
 CFLAGS=-c
 
-all: libcthread
+all:  libcthread
 
 libcthread: cthread.o
 	mv *.o $(BIN_DIR)
-	ar rcs $(LIB_DIR)/libcthread.a $(BIN_DIR)/cthread.o
+	ar rcs $(LIB_DIR)/libcthread.a $(BIN_DIR)/cthread.o $(BIN_DIR)/support.o
 
 cthread.o:
-	$(CC) $(CFLAGS) -I$(INC_DIR) $(SRC_DIR)/cthread.c $(BIN_DIR)/support.o
+	$(CC) $(CFLAGS) -m32 -I$(INC_DIR) $(SRC_DIR)/cthread.c -Wall
 
 clean:
 	mv $(BIN_DIR)/support.o .
